@@ -3,21 +3,21 @@
  * feature work.
  */
 public class DebugExercise1 {
-    public static double divideThenRound(int top, int bottom) {
-        double quotient = top / bottom;
-        double result = Math.round(quotient);
+    public static int divideThenRound(int top, int bottom) {
+        double quotient = (double)top / (double)bottom;
+        int result = (int) Math.round(quotient);
         return result;
     }
 
     public static void main(String[] args) {
         int t = 10;
         int b = 2;
-        double result = divideThenRound(t, b);
+        int result = divideThenRound(t, b);
         System.out.println("round(" + t + "/" + b + ")=" + result);
 
         int t2 = 9;
         int b2 = 4;
-        double result2 = divideThenRound(t2, b2);
+        int result2 = divideThenRound(t2, b2);
         System.out.println("round(" + t2 + "/" + b2 + ")=" + result2);
 
         int t3 = 3;
