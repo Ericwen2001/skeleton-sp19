@@ -9,11 +9,11 @@ public class NBody {
 
     }
 
-    public static Body[] readBodies(String a) {
+    public static Planet[] readBodies(String a) {
         In in = new In(a);
         int planetNumber = in.readInt();
         double radius = in.readDouble();
-        Body[] bodies = new Body[planetNumber];
+        Planet[] bodies = new Planet[planetNumber];
         for (int i = 0; i < planetNumber; i++) {
             double xxPos = in.readDouble();
             double yyPos = in.readDouble();
@@ -21,7 +21,7 @@ public class NBody {
             double yyVel = in.readDouble();
             double mass = in.readDouble();
             String imgFileName = in.readString();
-            bodies[i] = new Body(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
+            bodies[i] = new Planet(xxPos, yyPos, xxVel, yyVel, mass, imgFileName);
 
         }
         return bodies;
@@ -34,11 +34,11 @@ public class NBody {
         double dt = Double.parseDouble(args[1]);
         String filename = args[2];
         double radius = readRadius(filename);
-        Body[] bodies = readBodies(filename);
+        Planet[] bodies = readBodies(filename);
         StdDraw.setScale(-radius, radius);
 
         StdDraw.picture(0, 0, background);
-        for (Body a : bodies) {
+        for (Planet a : bodies) {
             a.draw();
         }
 
@@ -60,7 +60,7 @@ public class NBody {
                 bodies[i].update(dt, xForces[i], yForces[i]);
             }
             StdDraw.picture(0, 0, background);
-            for (Body a : bodies) {
+            for (Planet a : bodies) {
                 a.draw();
             }
             StdDraw.show();
@@ -69,10 +69,10 @@ public class NBody {
         }
         StdOut.printf("%d\n", bodies.length);
         StdOut.printf("%.2e\n", radius);
-        for (Body body : bodies) {
+        for (Planet planet : bodies) {
             StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
-                    body.xxPos, body.yyPos, body.xxVel,
-                    body.yyVel, body.mass, body.imgFileName);
+                    planet.xxPos, planet.yyPos, planet.xxVel,
+                    planet.yyVel, planet.mass, planet.imgFileName);
         }
 
 

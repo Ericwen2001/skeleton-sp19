@@ -5,4 +5,4 @@
 0.000e00 -4.500e10 -3.000e04 0.000e00 1.989e30 sun.gif
 [!] Your program should not read this line, as all 3 planets were already listed
 and there is no further information to be specified. So you can put comments here.
-This file contains an interesting 3-body system.
+This file contains an interesting 3-planet system.
