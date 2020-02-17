@@ -27,8 +27,6 @@ public class NBody {
         return bodies;
     }
 
-    public static String background = "./images/starfield.jpg";
-
     public static void main(String[] args) {
         double T = Double.parseDouble(args[0]);
         double dt = Double.parseDouble(args[1]);
@@ -37,6 +35,7 @@ public class NBody {
         Planet[] bodies = readPlanets(filename);
         StdDraw.setScale(-radius, radius);
 
+        String background = "./images/starfield.jpg";
         StdDraw.picture(0, 0, background);
         for (Planet a : bodies) {
             a.draw();
@@ -52,9 +51,6 @@ public class NBody {
                 xForces[i] = bodies[i].calcNetForceExertedByX(bodies);
                 yForces[i] = bodies[i].calcNetForceExertedByY(bodies);
 
-            }
-            if(time<=3*dt){
-                System.out.println(Arrays.toString(yForces));
             }
             for(int i=0;i<bodies.length;i++){
                 bodies[i].update(dt, xForces[i], yForces[i]);
