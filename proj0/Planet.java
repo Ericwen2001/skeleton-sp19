@@ -27,7 +27,7 @@ public class Planet {
         imgFileName = b.imgFileName;
 
     }
-    public static final double gravitational_Constant =  6.67e-11;
+    private static final double gravitational_Constant =  6.67e-11;
 
     public double calcDistance(Planet a){
         double yDif = Math.abs(this.yyPos-a.yyPos);

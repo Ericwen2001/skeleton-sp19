@@ -5,7 +5,7 @@ import java.util.Iterator;
 //TODO: Make sure to add the override tag for all overridden methods
 //TODO: Make sure to make this class implement BoundedQueue<T>
 
-public class ArrayRingBuffer<T>  {
+public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     /* Index for the next dequeue or peek. */
     private int first;
     /* Index for the next enqueue. */
@@ -21,6 +21,17 @@ public class ArrayRingBuffer<T>  {
     public ArrayRingBuffer(int capacity) {
         // TODO: Create new array with capacity elements.
         //       first, last, and fillCount should all be set to 0.
+
+    }
+
+    @Override
+    public int capacity() {
+        return 0;
+    }
+
+    @Override
+    public int fillCount() {
+        return 0;
     }
 
     /**
