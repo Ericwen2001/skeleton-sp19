@@ -1,10 +1,10 @@
 package es.datastructur.synthesizer;
-import java.util.Iterator;
-import java.util.Objects;
 
-//TODO: Make sure to that this class and all of its methods are public
-//TODO: Make sure to add the override tag for all overridden methods
-//TODO: Make sure to make this class implement BoundedQueue<T>
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+
 
 public class ArrayRingBuffer<T> implements BoundedQueue<T> {
     /* Index for the next dequeue or peek. */
@@ -48,7 +48,7 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         // Enqueue the item. Don't forget to increase fillCount and update
         //last.
         if (isFull()) {
-            throw new RuntimeException();
+            throw new RuntimeException("Ring Buffer overflow");
         }
 
         rb[last] = x;
@@ -69,7 +69,7 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         // Dequeue the first item. Don't forget to decrease fillCount and
         //       update first.
         if(isEmpty()) {
-            throw new RuntimeException();
+            throw new RuntimeException("Ring Buffer underflow");
         }
 
         int marker = first;
@@ -92,7 +92,56 @@ public class ArrayRingBuffer<T> implements BoundedQueue<T> {
         return rb[first];
     }
 
-    // TODO: When you get to part 4, implement the needed code to support
-    //       iteration and equals.
+    @Override
+    public boolean equals (Object s) {
+        ArrayRingBuffer<T> ss = (ArrayRingBuffer<T>)  s;
+        ArrayList<T> a = new ArrayList<>();
+        int count = 0;
+        for (T item : rb) {
+            count ++;
+            if (count <= fillCount){
+            a.add(item);
+            }
+        }
+        ArrayList<T> b = new ArrayList<>();
+        count = 0;
+        for (T item : ss) {
+            count += 1;
+            if (count <= ss.fillCount) {
+             b.add(item);
+    }
 }
-    // TODO: Remove all comments that say TODO when you're done.
+        return a.equals(b);
+    }
+
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>(){
+            private int count = 0;
+            private int pos = first;
+
+            @Override
+            public boolean hasNext() {
+                return fillCount - count > 0;
+            }
+
+            @Override
+            public T next() {
+                int returnIndex = pos;
+                count += 1;
+                pos += 1;
+
+                if (pos == capacity()) {
+                    pos = 0;
+                }
+                return rb[returnIndex];
+            }
+        };
+    }
+
+
+
+
+}
+

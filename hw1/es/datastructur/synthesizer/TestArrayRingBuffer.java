@@ -22,4 +22,20 @@ public class TestArrayRingBuffer {
         assertTrue(arb.isFull());
 
     }
+    @Test
+    public void testEquals() {
+        ArrayRingBuffer arb1 = new ArrayRingBuffer(4);
+        arb1.enqueue(1);
+        arb1.enqueue(2);
+        arb1.enqueue(3);
+        ArrayRingBuffer arb2 = new ArrayRingBuffer(4);
+        arb2.enqueue(1);
+        arb2.enqueue(1);
+        arb2.enqueue(2);
+        arb2.enqueue(3);
+        arb2.dequeue();
+        arb1.equals(arb2);
+        assertTrue(arb1.equals(arb2));
+    }
+
 }
